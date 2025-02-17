@@ -45,13 +45,13 @@ function StockMonthRevenuePage() {
   }, [params?.id]);
 
   return (
-    <div className="flex h-full min-h-screen w-full flex-col items-center bg-[#ededed]">
+    <div className="flex h-full min-h-screen w-full flex-col items-center bg-zinc-100">
       <ErrorAlert />
       <Loading />
       <Header />
       {stockInfo && (
         <>
-          <div className="my-2 flex w-1/2 rounded-sm border border-gray-300 bg-[#fafafa]">
+          <div className="my-2 flex w-1/2 rounded-sm border border-gray-300 bg-zinc-50">
             <div className="px-4 py-2 text-xl font-bold">
               {stockInfo?.stock_name} ({stockInfo?.stock_id})
             </div>
