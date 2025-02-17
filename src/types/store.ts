@@ -9,6 +9,7 @@ export type LoadingStore = {
 export type StockStore = {
   stockInfo: StockInfo | null;
   stockMonthRevenue: StockMonthRevenue[] | null;
+  resetStockInfo: () => void;
   fetchStockInfo: (stockId: string) => void;
   fetchStockMonthRevenue: (
     stockId: string,

@@ -4,14 +4,17 @@ import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { useRouter } from 'next/navigation';
+import { useStockStore } from '@/store/stock';
 
 function Searchbar() {
   const router = useRouter();
   const [searchText, setSearchText] = useState('');
+  const { resetStockInfo } = useStockStore();
 
   const handleSearch = () => {
     console.log(searchText);
     router.push(`/${searchText}`);
+    resetStockInfo();
   };
 
   return (

@@ -7,6 +7,9 @@ import { StockStore } from '@/types/store';
 export const useStockStore = create<StockStore>((set) => ({
   stockInfo: null,
   stockMonthRevenue: null,
+  resetStockInfo: () => {
+    set({ stockInfo: null });
+  },
   fetchStockInfo: async (stockId) => {
     useLoadingStore.getState().pushLoading();
     const data = await api.getStockInfo(stockId);
