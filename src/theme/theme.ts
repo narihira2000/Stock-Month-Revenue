@@ -1,7 +1,14 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
-import { palette } from './palette';
+import resolveConfig from 'tailwindcss/resolveConfig';
+import tailwindConfig from '../../tailwind.config';
+
+const tailwindTheme = resolveConfig(tailwindConfig);
 
 export const customTheme = createTheme({
-  palette: palette,
+  palette: {
+    primary: {
+      main: tailwindTheme.theme.colors.blue[100],
+    },
+  },
 });
