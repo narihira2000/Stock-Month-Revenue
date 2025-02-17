@@ -71,6 +71,7 @@ function CombinedChart({
       y1: {
         type: 'linear' as const,
         position: 'right' as const,
+        min: -100,
         title: {
           display: true,
           text: lineData.axisTitle,
