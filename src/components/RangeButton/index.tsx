@@ -74,7 +74,12 @@ function RangeButton() {
         </DialogContent>
         <DialogActions>
           <Button onClick={toggleDialog}>取消</Button>
-          <Button onClick={handleCustomRange}>確定</Button>
+          <Button
+            onClick={handleCustomRange}
+            disabled={customEndDate < customStartDate}
+          >
+            確定
+          </Button>
         </DialogActions>
       </Dialog>
       <Select
