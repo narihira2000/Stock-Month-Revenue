@@ -24,8 +24,6 @@ function RangeButton() {
       console.log(format(startDate, 'yyyy-MM-01'));
       console.log(format(endDate, 'yyyy-MM-01'));
       setSearchRangeValue(event.target.value);
-    } else {
-      toggleDialog();
     }
   };
   const toggleDialog = () => {
@@ -90,7 +88,9 @@ function RangeButton() {
         <MenuItem value={'3'}>近 3 年</MenuItem>
         <MenuItem value={'5'}>近 5 年</MenuItem>
         <MenuItem value={'8'}>近 8 年</MenuItem>
-        <MenuItem value={'-1'}>自訂</MenuItem>
+        <MenuItem onClick={toggleDialog} value={'-1'}>
+          自訂
+        </MenuItem>
       </Select>
     </div>
   );
