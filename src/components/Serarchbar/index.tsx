@@ -17,6 +17,12 @@ function Searchbar() {
     resetStockInfo();
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <div className="flex justify-center">
       <div className="flex w-2/5 flex-row justify-between rounded-sm border border-solid border-gray-400 bg-[#fafafa] px-4">
@@ -25,6 +31,7 @@ function Searchbar() {
           placeholder="輸入台股代號，查看公司價值"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
+          onKeyDown={handleKeyPress}
         />
         <IconButton
           className="flex items-end"
