@@ -40,6 +40,10 @@ export const useStockStore = create<StockStore>((set) => ({
     if (data) {
       // Calculate annual growth rate
       for (let i = 12; i < data.length; i++) {
+        if (data[i - 12].revenue === 0) {
+          data[i].annual_growth_rate = 0;
+          continue;
+        }
         data[i].annual_growth_rate =
           (data[i].revenue / data[i - 12].revenue - 1) * 100;
       }

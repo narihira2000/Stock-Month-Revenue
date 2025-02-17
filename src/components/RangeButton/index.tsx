@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Dialog from '@mui/material/Dialog';
@@ -9,21 +9,21 @@ import Button from '@mui/material/Button';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import { format, subYears, subMonths } from 'date-fns';
+import { subYears } from 'date-fns';
+import { useStockStore } from '@/store/stock';
 
 function RangeButton() {
   const [searchRangeValue, setSearchRangeValue] = useState('5');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [customStartDate, setCustomStartDate] = useState(new Date());
   const [customEndDate, setCustomEndDate] = useState(new Date());
+  const { stockInfo, fetchStockMonthRevenue } = useStockStore();
   const handleRangeChange = (event: SelectChangeEvent) => {
     if (event.target.value !== '-1') {
-      const now = new Date();
-      const endDate = subMonths(now, 1);
+      const endDate = new Date();
       const startDate = subYears(endDate, parseInt(event.target.value));
-      console.log(format(startDate, 'yyyy-MM-01'));
-      console.log(format(endDate, 'yyyy-MM-01'));
       setSearchRangeValue(event.target.value);
+      handleFetchStockMonthRevenue(startDate, endDate);
     }
   };
   const toggleDialog = () => {
@@ -31,12 +31,25 @@ function RangeButton() {
   };
   const handleCustomRange = () => {
     if (customStartDate && customEndDate) {
-      console.log(format(customStartDate, 'yyyy-01-01'));
-      console.log(format(customEndDate, 'yyyy-01-01'));
+      // The January's revenue is released on 2/1
+      const newStartDate = new Date(customStartDate.getFullYear(), 1, 1);
+      // The December's revenue is released on 1/1 of the next year
+      const newEndDate = new Date(customEndDate.getFullYear() + 1, 0, 1);
       toggleDialog();
       setSearchRangeValue('-1');
+      handleFetchStockMonthRevenue(newStartDate, newEndDate);
     }
   };
+  const handleFetchStockMonthRevenue = (startDate: Date, endDate: Date) => {
+    if (stockInfo) {
+      fetchStockMonthRevenue(stockInfo?.stock_id, startDate, endDate);
+    }
+  };
+  useEffect(() => {
+    const endDate = new Date();
+    const startDate = subYears(endDate, parseInt(searchRangeValue));
+    handleFetchStockMonthRevenue(startDate, endDate);
+  }, [stockInfo?.stock_id]);
 
   return (
     <div>
