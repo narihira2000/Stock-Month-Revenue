@@ -1,10 +1,5 @@
 import { create } from 'zustand';
-
-type LoadingStore = {
-  loadingCount: number;
-  pushLoading: () => void;
-  popLoading: () => void;
-};
+import { LoadingStore } from '@/types/store';
 
 export const useLoadingStore = create<LoadingStore>((set) => ({
   loadingCount: 0,

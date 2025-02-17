@@ -1,19 +1,8 @@
 import { api } from '@/api';
-import { StockInfo, StockMonthRevenue } from '@/types/stock';
 import { create } from 'zustand';
 import { useLoadingStore } from './loading';
 import { format, subYears } from 'date-fns';
-
-type StockStore = {
-  stockInfo: StockInfo | null;
-  stockMonthRevenue: StockMonthRevenue[] | null;
-  fetchStockInfo: (stockId: string) => void;
-  fetchStockMonthRevenue: (
-    stockId: string,
-    startDate: Date,
-    endDate: Date
-  ) => void;
-};
+import { StockStore } from '@/types/store';
 
 export const useStockStore = create<StockStore>((set) => ({
   stockInfo: null,
