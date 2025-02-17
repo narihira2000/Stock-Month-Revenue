@@ -17,3 +17,9 @@ export type StockStore = {
     endDate: Date
   ) => void;
 };
+
+export type ErrorStore = {
+  error: string | null;
+  setError: (error: string) => void;
+  clearError: () => void;
+};

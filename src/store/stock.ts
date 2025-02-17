@@ -1,8 +1,10 @@
 import { api } from '@/api';
 import { create } from 'zustand';
 import { useLoadingStore } from './loading';
+import { useErrorStore } from './error';
 import { format, subYears } from 'date-fns';
 import { StockStore } from '@/types/store';
+import { ErrorText } from '@/enum/error';
 
 export const useStockStore = create<StockStore>((set) => ({
   stockInfo: null,
@@ -15,6 +17,8 @@ export const useStockStore = create<StockStore>((set) => ({
     const data = await api.getStockInfo(stockId);
     if (data) {
       set({ stockInfo: data });
+    } else {
+      useErrorStore.getState().setError(ErrorText.STOCK_INFO_NOT_FOUND);
     }
     useLoadingStore.getState().popLoading();
   },
@@ -42,6 +46,10 @@ export const useStockStore = create<StockStore>((set) => ({
       const startDateString = format(startDate, 'yyyy-MM-01');
       const filteredData = data.filter((item) => item.date >= startDateString);
       set({ stockMonthRevenue: filteredData });
+    } else {
+      useErrorStore
+        .getState()
+        .setError(ErrorText.STOCK_MONTH_REVENUE_NOT_FOUND);
     }
     useLoadingStore.getState().popLoading();
   },

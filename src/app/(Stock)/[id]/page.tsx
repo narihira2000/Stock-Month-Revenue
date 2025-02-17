@@ -8,12 +8,16 @@ import Loading from '@/components/Loading';
 import { useEffect } from 'react';
 import { useStockStore } from '@/store/stock';
 import ColumnPinnedTable from '@/components/ColumnPinnedTable';
+import ErrorAlert from '@/components/ErrorAlert';
+import { useErrorStore } from '@/store/error';
+import { ErrorText } from '@/enum/error';
 
 function StockMonthRevenuePage() {
   const params = useParams<{ id: string }>();
   const stockInfo = useStockStore((state) => state.stockInfo);
   const stockMonthRevenue = useStockStore((state) => state.stockMonthRevenue);
   const fetchStockInfo = useStockStore((state) => state.fetchStockInfo);
+  const setError = useErrorStore((state) => state.setError);
   const labels =
     stockMonthRevenue?.map(
       (data) => new Date(data.revenue_year, data.revenue_month - 1)
@@ -31,10 +35,13 @@ function StockMonthRevenuePage() {
   useEffect(() => {
     if (parseInt(params.id) && params.id.length === 4) {
       fetchStockInfo(params.id);
+    } else {
+      setError(ErrorText.STOCK_INFO_NOT_FOUND);
     }
   }, [params?.id]);
   return (
     <div className="flex h-full min-h-screen w-full flex-col items-center bg-[#ededed]">
+      <ErrorAlert />
       <Loading />
       <Header />
       {stockInfo && (
