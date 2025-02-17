@@ -56,7 +56,7 @@ function RangeButton() {
 
   return (
     <div>
-      <Dialog disableEscapeKeyDown open={isDialogOpen} onClose={toggleDialog}>
+      <Dialog open={isDialogOpen} onClose={toggleDialog}>
         <DialogTitle>自訂區間</DialogTitle>
         <DialogContent>
           <div className="flex flex-col">
