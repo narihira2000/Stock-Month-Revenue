@@ -1,6 +1,8 @@
 'use client';
 import Header from '@/components/Header';
+import CombinedChart from '@/components/CombinedChart';
 import { useParams } from 'next/navigation';
+import { ChartData } from '@/types/chart';
 import RangeButton from '@/components/RangeButton';
 import Loading from '@/components/Loading';
 import { useEffect } from 'react';
@@ -8,7 +10,21 @@ import { useStockStore } from '@/store/stock';
 
 function StockMonthRevenuePage() {
   const params = useParams<{ id: string }>();
-  const { stockInfo, fetchStockInfo } = useStockStore();
+  const { stockInfo, stockMonthRevenue, fetchStockInfo } = useStockStore();
+  const labels =
+    stockMonthRevenue?.map(
+      (data) => new Date(data.revenue_year, data.revenue_month - 1)
+    ) || [];
+  const barData: ChartData = {
+    label: '每月營收',
+    axisTitle: '千元',
+    data: stockMonthRevenue?.map((data) => data.revenue / 1000) || [],
+  };
+  const lineData: ChartData = {
+    label: '每月營收年增率',
+    axisTitle: '百分比',
+    data: stockMonthRevenue?.map((data) => data?.annual_growth_rate || 0) || [],
+  };
   useEffect(() => {
     if (parseInt(params.id) && params.id.length === 4) {
       fetchStockInfo(params.id);
@@ -30,6 +46,7 @@ function StockMonthRevenuePage() {
           </div>
           <RangeButton />
         </div>
+        <CombinedChart labels={labels} barData={barData} lineData={lineData} />
       </div>
     </div>
   );
