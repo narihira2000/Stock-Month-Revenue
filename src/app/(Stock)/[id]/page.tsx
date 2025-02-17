@@ -11,7 +11,9 @@ import ColumnPinnedTable from '@/components/ColumnPinnedTable';
 
 function StockMonthRevenuePage() {
   const params = useParams<{ id: string }>();
-  const { stockInfo, stockMonthRevenue, fetchStockInfo } = useStockStore();
+  const stockInfo = useStockStore((state) => state.stockInfo);
+  const stockMonthRevenue = useStockStore((state) => state.stockMonthRevenue);
+  const fetchStockInfo = useStockStore((state) => state.fetchStockInfo);
   const labels =
     stockMonthRevenue?.map(
       (data) => new Date(data.revenue_year, data.revenue_month - 1)

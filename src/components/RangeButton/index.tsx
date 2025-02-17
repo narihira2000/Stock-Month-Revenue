@@ -17,7 +17,10 @@ function RangeButton() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [customStartDate, setCustomStartDate] = useState(new Date());
   const [customEndDate, setCustomEndDate] = useState(new Date());
-  const { stockInfo, fetchStockMonthRevenue } = useStockStore();
+  const stockInfo = useStockStore((state) => state.stockInfo);
+  const fetchStockMonthRevenue = useStockStore(
+    (state) => state.fetchStockMonthRevenue
+  );
   const handleRangeChange = (event: SelectChangeEvent) => {
     if (event.target.value !== '-1') {
       const endDate = new Date();

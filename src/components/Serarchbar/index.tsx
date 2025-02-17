@@ -9,7 +9,7 @@ import { useStockStore } from '@/store/stock';
 function Searchbar() {
   const router = useRouter();
   const [searchText, setSearchText] = useState('');
-  const { resetStockInfo } = useStockStore();
+  const resetStockInfo = useStockStore((state) => state.resetStockInfo);
 
   const handleSearch = () => {
     console.log(searchText);
