@@ -5,6 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import { format } from 'date-fns';
+import { useEffect } from 'react';
 
 function ColumnPinnedTable({
   months,
@@ -15,6 +16,12 @@ function ColumnPinnedTable({
   revenues: number[];
   annualGrowths: number[];
 }) {
+  useEffect(() => {
+    const table = document.getElementById('table');
+    if (table && table.scrollLeft !== table.scrollWidth) {
+      table.scrollLeft = table.scrollWidth;
+    }
+  });
   return (
     <div className="flex flex-row overflow-scroll">
       <div>
@@ -41,7 +48,7 @@ function ColumnPinnedTable({
         </TableContainer>
       </div>
       <div className="overflow-scroll">
-        <TableContainer component={Paper}>
+        <TableContainer id="table" component={Paper}>
           <Table>
             <TableBody>
               <TableRow>
