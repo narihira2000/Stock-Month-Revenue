@@ -18,20 +18,24 @@ function StockMonthRevenuePage() {
   const stockMonthRevenue = useStockStore((state) => state.stockMonthRevenue);
   const fetchStockInfo = useStockStore((state) => state.fetchStockInfo);
   const setError = useErrorStore((state) => state.setError);
+
   const labels =
     stockMonthRevenue?.map(
       (data) => new Date(data.revenue_year, data.revenue_month - 1)
     ) || [];
+
   const barData: ChartData = {
     label: '每月營收',
     axisTitle: '千元',
     data: stockMonthRevenue?.map((data) => data.revenue / 1000) || [],
   };
+
   const lineData: ChartData = {
     label: '每月營收年增率',
     axisTitle: '百分比',
     data: stockMonthRevenue?.map((data) => data?.annual_growth_rate || 0) || [],
   };
+
   useEffect(() => {
     if (parseInt(params.id) && params.id.length === 4) {
       fetchStockInfo(params.id);
@@ -39,6 +43,7 @@ function StockMonthRevenuePage() {
       setError(ErrorText.STOCK_INFO_NOT_FOUND);
     }
   }, [params?.id]);
+
   return (
     <div className="flex h-full min-h-screen w-full flex-col items-center bg-[#ededed]">
       <ErrorAlert />

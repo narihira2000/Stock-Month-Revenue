@@ -21,6 +21,7 @@ function RangeButton() {
   const fetchStockMonthRevenue = useStockStore(
     (state) => state.fetchStockMonthRevenue
   );
+
   const handleRangeChange = (event: SelectChangeEvent) => {
     if (event.target.value !== '-1') {
       const endDate = new Date();
@@ -29,9 +30,11 @@ function RangeButton() {
       handleFetchStockMonthRevenue(startDate, endDate);
     }
   };
+
   const toggleDialog = () => {
     setIsDialogOpen(!isDialogOpen);
   };
+
   const handleCustomRange = () => {
     if (customStartDate && customEndDate) {
       // The January's revenue is released on 2/1
@@ -43,11 +46,13 @@ function RangeButton() {
       handleFetchStockMonthRevenue(newStartDate, newEndDate);
     }
   };
+
   const handleFetchStockMonthRevenue = (startDate: Date, endDate: Date) => {
     if (stockInfo) {
       fetchStockMonthRevenue(stockInfo?.stock_id, startDate, endDate);
     }
   };
+
   useEffect(() => {
     const endDate = new Date();
     const startDate = subYears(endDate, parseInt(searchRangeValue));

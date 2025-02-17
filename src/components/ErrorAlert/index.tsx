@@ -10,12 +10,14 @@ function Loading() {
   const error = useErrorStore((state) => state.error);
   const resetError = useErrorStore((state) => state.clearError);
   const [localError, setLocalError] = useState('');
+
   useEffect(() => {
     if (error) {
       // Prevent dialog's error text from being empty when closing the dialog
       setLocalError(error);
     }
   }, [error]);
+
   return (
     <Dialog open={!!error} onClose={resetError}>
       <DialogTitle>錯誤</DialogTitle>
