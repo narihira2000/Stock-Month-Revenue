@@ -8,7 +8,7 @@ function CombinedChart({
   barData,
   lineData,
 }: {
-  labels: string[];
+  labels: Date[];
   barData: ChartData;
   lineData: ChartData;
 }) {
@@ -48,6 +48,15 @@ function CombinedChart({
         type: 'time' as const,
         time: {
           tooltipFormat: 'yyyyMM' as const,
+        },
+        ticks: {
+          callback: function (value: string | number, index: number) {
+            // transform the timestamp to Date
+            const date = new Date(value);
+            return date.getMonth() === 0 || index === 0
+              ? date.getFullYear()
+              : '';
+          },
         },
       },
       y: {
