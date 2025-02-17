@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stock-Month-Revenue
 
-## Getting Started
+## 一個顯示台股每月營收及單月營收年增率的網頁
 
-First, run the development server:
+## 說明
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+使用 Next.js 開發一個抓取 FinMind API 資料的網頁，用以顯示台股的每月營收及單月營收年增率
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 使用
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 使用網頁上的搜尋列輸入台股代號，點擊搜尋即可查看資料
+- 也可以在網址後加上代號以查看 eg. `/2330`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 開發相關
 
-## Learn More
+### 指令
 
-To learn more about Next.js, take a look at the following resources:
+- 開發: `yarn dev`
+- 部屬: `yarn && yarn build`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 使用套件
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `material-ui`
+- `chart.js`
+- `date-fns`
+- `react-chartjs-2`
+- `zustand`
 
-## Deploy on Vercel
+### 部屬
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 環境變數: `NEXT_PUBLIC_FINMIND_API_URL`, `NEXT_PUBLIC_FINMIND_API_TOKEN`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Screenshot
+
+![](https://i.imgur.com/Ht8FS1N.png)
