@@ -8,7 +8,10 @@ const tailwindTheme = resolveConfig(tailwindConfig);
 export const customTheme = createTheme({
   palette: {
     primary: {
-      main: tailwindTheme.theme.colors.blue[100],
+      main: tailwindTheme.theme.colors.primary.main,
+    },
+    action: {
+      hover: tailwindTheme.theme.colors.action.hover,
     },
   },
 });
