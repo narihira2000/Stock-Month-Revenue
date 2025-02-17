@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import tailwindColors from 'tailwindcss/colors';
 
 export default {
   content: [
@@ -9,6 +10,8 @@ export default {
   theme: {
     extend: {
       colors: {
+        primary: { ...tailwindColors.blue, main: '#0386f4' },
+        action: { hover: '#f6f8fa' },
         background: 'var(--background)',
         foreground: 'var(--foreground)',
       },

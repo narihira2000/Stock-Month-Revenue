@@ -25,7 +25,7 @@ function Searchbar() {
 
   return (
     <div className="flex justify-center">
-      <div className="flex w-2/5 flex-row justify-between rounded-sm border border-solid border-gray-400 bg-[#fafafa] px-4">
+      <div className="flex w-2/5 flex-row justify-between rounded-sm border border-solid border-gray-400 bg-zinc-50 px-4">
         <InputBase
           className="w-full"
           placeholder="輸入台股代號，查看公司價值"

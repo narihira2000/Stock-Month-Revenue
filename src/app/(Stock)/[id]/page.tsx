@@ -45,20 +45,20 @@ function StockMonthRevenuePage() {
   }, [params?.id]);
 
   return (
-    <div className="flex h-full min-h-screen w-full flex-col items-center bg-[#ededed]">
+    <div className="flex h-full min-h-screen w-full flex-col items-center bg-zinc-100">
       <ErrorAlert />
       <Loading />
       <Header />
       {stockInfo && (
         <>
-          <div className="my-2 flex w-1/2 rounded-sm border border-gray-300 bg-[#fafafa]">
+          <div className="my-2 flex w-1/2 rounded-sm border border-gray-300 bg-zinc-50">
             <div className="px-4 py-2 text-xl font-bold">
               {stockInfo?.stock_name} ({stockInfo?.stock_id})
             </div>
           </div>
           <div className="my-2 flex w-1/2 flex-col rounded-sm border border-gray-300 bg-white p-4">
             <div className="mb-4 flex justify-between">
-              <div className="h-10 self-center rounded-sm bg-[#0386f4] px-4 py-2 font-bold text-white">
+              <div className="bg-primary-main h-10 self-center rounded-sm px-4 py-2 font-bold text-white">
                 每月營收
               </div>
               <RangeButton />
@@ -70,7 +70,7 @@ function StockMonthRevenuePage() {
             />
           </div>
           <div className="mb-4 flex w-1/2 flex-col rounded-sm border border-gray-300 bg-white p-4">
-            <div className="mb-4 h-10 self-start rounded-sm bg-[#0386f4] px-4 py-2 font-bold text-white">
+            <div className="bg-primary-main mb-4 h-10 self-start rounded-sm px-4 py-2 font-bold text-white">
               詳細數據
             </div>
             <ColumnPinnedTable
