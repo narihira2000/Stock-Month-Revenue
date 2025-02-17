@@ -7,6 +7,7 @@ export interface StockMonthRevenue {
   revenue: number;
   revenue_month: number;
   revenue_year: number;
+  annual_growth_rate?: number;
 }
 
 export interface StockInfo {
