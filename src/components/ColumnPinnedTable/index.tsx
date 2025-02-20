@@ -25,7 +25,12 @@ function ColumnPinnedTable({
   return (
     <div className="flex flex-row">
       <div>
-        <TableContainer sx={{ width: 170 }} component={Paper}>
+        <TableContainer
+          elevation={0}
+          className="!rounded-r-none"
+          sx={{ width: 170 }}
+          component={Paper}
+        >
           <Table>
             <TableBody>
               <TableRow>
@@ -48,7 +53,12 @@ function ColumnPinnedTable({
         </TableContainer>
       </div>
       <div className="overflow-x-auto">
-        <TableContainer id="table" component={Paper}>
+        <TableContainer
+          elevation={0}
+          className="!rounded-l-none"
+          id="table"
+          component={Paper}
+        >
           <Table>
             <TableBody>
               <TableRow>
