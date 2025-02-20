@@ -102,7 +102,7 @@ function RangeButton() {
         </DialogActions>
       </Dialog>
       <Select
-        className="bg-primary-main h-10 !rounded-sm !border-opacity-0 !font-bold !text-white"
+        className="h-10 !rounded-sm !border-opacity-0 bg-primary-main !font-bold !text-white"
         value={searchRangeValue}
         onChange={handleRangeChange}
       >

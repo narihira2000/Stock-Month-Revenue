@@ -29,7 +29,7 @@ function ColumnPinnedTable({
           <Table>
             <TableBody>
               <TableRow>
-                <TableCell className="bg-action-hover border border-neutral-200">
+                <TableCell className="border border-neutral-200 bg-action-hover">
                   年度月份
                 </TableCell>
               </TableRow>
@@ -39,7 +39,7 @@ function ColumnPinnedTable({
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="bg-action-hover border border-neutral-200">
+                <TableCell className="border border-neutral-200 bg-action-hover">
                   單月營收年增率 (%)
                 </TableCell>
               </TableRow>
@@ -54,7 +54,7 @@ function ColumnPinnedTable({
               <TableRow>
                 {months.map((month, index) => (
                   <TableCell
-                    className="bg-action-hover border border-neutral-200"
+                    className="border border-neutral-200 bg-action-hover"
                     key={index}
                     align="right"
                   >
@@ -76,7 +76,7 @@ function ColumnPinnedTable({
               <TableRow>
                 {annualGrowths.map((annualGrowth, index) => (
                   <TableCell
-                    className="bg-action-hover border border-neutral-200"
+                    className="border border-neutral-200 bg-action-hover"
                     key={index}
                     align="right"
                   >
