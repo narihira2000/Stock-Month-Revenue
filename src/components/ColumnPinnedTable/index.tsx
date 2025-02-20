@@ -23,7 +23,7 @@ function ColumnPinnedTable({
     }
   });
   return (
-    <div className="flex flex-row overflow-scroll">
+    <div className="flex flex-row">
       <div>
         <TableContainer sx={{ width: 170 }} component={Paper}>
           <Table>
@@ -47,7 +47,7 @@ function ColumnPinnedTable({
           </Table>
         </TableContainer>
       </div>
-      <div className="overflow-scroll">
+      <div className="overflow-x-auto">
         <TableContainer id="table" component={Paper}>
           <Table>
             <TableBody>
