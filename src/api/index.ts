@@ -9,7 +9,7 @@ export const api = {
     const params = new URLSearchParams({
       dataset: 'TaiwanStockInfo',
       data_id: stockId,
-      token: API_TOKEN || '',
+      ...(API_TOKEN && { token: API_TOKEN }),
     });
     return fetch(`${url}?${params}`)
       .then((res) => res.json())
@@ -33,7 +33,7 @@ export const api = {
       data_id: stockId,
       start_date: startDate,
       end_date: endDate,
-      token: API_TOKEN || '',
+      ...(API_TOKEN && { token: API_TOKEN }),
     });
     return fetch(`${url}?${params}`)
       .then((res) => res.json())
