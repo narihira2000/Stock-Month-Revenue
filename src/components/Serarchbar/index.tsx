@@ -20,7 +20,8 @@ function Searchbar() {
       debouncedSearchText !== '' &&
       !stockInfo.industry_category.includes('ETF') &&
       stockInfo.stock_id.length === 4 &&
-      stockInfo.stock_id.includes(debouncedSearchText)
+      (stockInfo.stock_id.includes(debouncedSearchText) ||
+        stockInfo.stock_name.includes(debouncedSearchText))
   );
 
   const handleSearch = (text: string = '') => {
