@@ -19,6 +19,7 @@ function Searchbar() {
     (stockInfo) =>
       debouncedSearchText !== '' &&
       !stockInfo.industry_category.includes('ETF') &&
+      stockInfo.stock_id.length === 4 &&
       stockInfo.stock_id.includes(debouncedSearchText)
   );
 
