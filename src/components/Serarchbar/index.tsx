@@ -66,7 +66,7 @@ function Searchbar() {
         </IconButton>
       </div>
       {isFocused && filteredStockInfos && filteredStockInfos.length > 0 && (
-        <div className="absolute top-full z-10 flex h-80 w-2/5 flex-col overflow-y-auto rounded-sm rounded-t-none border border-t-0 border-solid border-gray-400 bg-white">
+        <div className="absolute top-full z-10 flex max-h-80 w-2/5 flex-col overflow-y-auto rounded-sm rounded-t-none border border-t-0 border-solid border-gray-400 bg-white">
           {filteredStockInfos.map((stockInfo) => (
             <MenuItem
               key={`${stockInfo.industry_category}_${stockInfo.stock_id}_${stockInfo.type}`}
