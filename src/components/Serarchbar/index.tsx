@@ -45,6 +45,19 @@ function Searchbar() {
     e.preventDefault();
   };
 
+  const highlightText = (text: string) => {
+    const parts = text.split(new RegExp(`(${debouncedSearchText})`, 'gi'));
+    return parts.map((part, index) =>
+      part.toLowerCase() === debouncedSearchText.toLowerCase() ? (
+        <span key={index} className="font-bold text-primary-main">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
+
   return (
     <div className="relative flex flex-col items-center justify-center">
       <div className="flex w-2/5 flex-row justify-between rounded-sm border border-solid border-gray-400 bg-zinc-50 px-4">
@@ -76,8 +89,8 @@ function Searchbar() {
               onMouseDown={handleMouseDown}
               onClick={() => handleSearch(stockInfo.stock_id)}
             >
-              <div>{stockInfo.stock_name}</div>
-              <div>{stockInfo.stock_id}</div>
+              <div>{highlightText(stockInfo.stock_name)}</div>
+              <div>{highlightText(stockInfo.stock_id)}</div>
             </MenuItem>
           ))}
         </div>
