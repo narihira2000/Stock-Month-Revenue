@@ -12,6 +12,11 @@ function CombinedChart({
   barData: ChartData;
   lineData: ChartData;
 }) {
+  const renderTicks = (value: string | number, index: number) => {
+    // transform the timestamp to Date
+    const date = new Date(value);
+    return date.getMonth() === 0 || index === 0 ? date.getFullYear() : '';
+  };
   const data = {
     labels,
     datasets: [
@@ -50,13 +55,7 @@ function CombinedChart({
           tooltipFormat: 'yyyyMM' as const,
         },
         ticks: {
-          callback: function (value: string | number, index: number) {
-            // transform the timestamp to Date
-            const date = new Date(value);
-            return date.getMonth() === 0 || index === 0
-              ? date.getFullYear()
-              : '';
-          },
+          callback: renderTicks,
         },
       },
       y: {
