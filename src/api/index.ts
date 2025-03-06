@@ -14,12 +14,8 @@ export const api = {
     return fetch(`${url}?${params}`)
       .then((res) => res.json())
       .then((responseJson: StockInfoResponse) => {
-        if (
-          responseJson.msg === 'success' &&
-          responseJson.data &&
-          responseJson.data.length > 0
-        ) {
-          return responseJson.data[0];
+        if (responseJson.msg === 'success' && responseJson.data) {
+          return responseJson.data;
         }
       })
       .catch((error) => {

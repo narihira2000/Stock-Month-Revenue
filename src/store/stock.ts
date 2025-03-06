@@ -8,6 +8,7 @@ import { ErrorText } from '@/enum/error';
 
 export const useStockStore = create<StockStore>((set) => ({
   stockInfo: null,
+  stockInfos: null,
   stockMonthRevenue: null,
   resetStockInfo: () => {
     set({ stockInfo: null });
@@ -15,8 +16,18 @@ export const useStockStore = create<StockStore>((set) => ({
   fetchStockInfo: async (stockId) => {
     useLoadingStore.getState().pushLoading();
     const data = await api.getStockInfo(stockId);
+    if (data && data?.length > 0) {
+      set({ stockInfo: data[0] });
+    } else {
+      useErrorStore.getState().setError(ErrorText.STOCK_INFO_NOT_FOUND);
+    }
+    useLoadingStore.getState().popLoading();
+  },
+  fetchStockInfos: async () => {
+    useLoadingStore.getState().pushLoading();
+    const data = await api.getStockInfo('');
     if (data) {
-      set({ stockInfo: data });
+      set({ stockInfos: data });
     } else {
       useErrorStore.getState().setError(ErrorText.STOCK_INFO_NOT_FOUND);
     }
