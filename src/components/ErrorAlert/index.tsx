@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
-function Loading() {
+function ErrorAlert() {
   const error = useErrorStore((state) => state.error);
   const resetError = useErrorStore((state) => state.clearError);
   const [localError, setLocalError] = useState('');
@@ -29,4 +29,4 @@ function Loading() {
   );
 }
 
-export default Loading;
+export default ErrorAlert;
